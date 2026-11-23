@@ -31,7 +31,7 @@
     url: github:mudler/LocalAI/gallery/virtual.yaml@master
     files:
       - filename: Qwen-Image-2.1-Turbo-AD-Q4_K.gguf
-        sha256: c56db41508c4c3c0d5782e40e4f153c38a1154ac9466c1c5c50a6e4bd09f6a69
+        sha256: 4bb73c53cbe284bbd6d69b9fdc59539c531f0389dd2aa567663d777f8130bc59
         uri: https://huggingface.co/AtomicChat/Qwen-Image-2.1-Turbo-GGUF/resolve/bb25d06bc74119c12207243d68917951e6d9c232/Qwen-Image-2.1-Turbo-AD-Q4_K.gguf
       - filename: Qwen-Image-2.1-Turbo-Abliterated-Uncensored-Q8_0.gguf
         sha256: f8f9f6276b726db5291f4a5343089612cb5fd08aa81e8f0791dc66d2c03d07ca
