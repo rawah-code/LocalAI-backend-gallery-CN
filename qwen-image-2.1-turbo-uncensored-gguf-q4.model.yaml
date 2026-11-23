@@ -1,0 +1,54 @@
+- kind: model
+  id: qwen-image-2.1-turbo-uncensored-gguf-q4
+  name: qwen-image-2.1-turbo-uncensored-gguf-q4
+  version: 0.0.0-gallery.c32bebdcabb2
+  description: |
+    Qwen-Image 2.1 Turbo text-to-image assembly with AtomicChat's AD-Q4_K denoiser, Q8_0 abliterated text encoder, and the Qwen Image 2.1 BF16 VAE. It uses the Turbo runtime's exact eight-step sigma schedule with Euler sampling and CFG 1.0.
+
+    The denoiser and VAE are governed by the Qwen Research License; the separately modified encoder is Apache-2.0. The complete image runtime is therefore not Apache-2.0. AtomicChat reports that changing the encoder's refusal direction produced no measured category-outcome change in its image tests, so this entry does not promise broader image capability.
+
+    This bundle has no vision projector and supports text-to-image only, not reference-image editing.
+  license: other
+  urls:
+    - https://huggingface.co/Qwen/Qwen-Image-2.1
+    - https://huggingface.co/AtomicChat/Qwen-Image-2.1-Turbo-GGUF
+    - https://huggingface.co/AtomicChat/Qwen-Image-2.1-Turbo-Uncensored-GGUF
+    - https://huggingface.co/Comfy-Org/Qwen-Image-2.1
+  tags:
+    - qwen
+    - qwen-image
+    - text-to-image
+    - uncensored
+    - gguf
+    - quantized
+    - diffusion
+  icon: https://qianwen-res.oss-cn-beijing.aliyuncs.com/Qwen-Image/qwen_image_logo.png
+  channel: gallery
+  policy:
+    requireSignature: false
+  schemaVersion: 1
+  model:
+    url: github:mudler/LocalAI/gallery/virtual.yaml@master
+    files:
+      - filename: Qwen-Image-2.1-Turbo-AD-Q4_K.gguf
+        sha256: c56db41508c4c3c0d5782e40e4f153c38a1154ac9466c1c5c50a6e4bd09f6a69
+        uri: https://huggingface.co/AtomicChat/Qwen-Image-2.1-Turbo-GGUF/resolve/bb25d06bc74119c12207243d68917951e6d9c232/Qwen-Image-2.1-Turbo-AD-Q4_K.gguf
+      - filename: Qwen-Image-2.1-Turbo-Abliterated-Uncensored-Q8_0.gguf
+        sha256: f8f9f6276b726db5291f4a5343089612cb5fd08aa81e8f0791dc66d2c03d07ca
+        uri: https://huggingface.co/AtomicChat/Qwen-Image-2.1-Turbo-Uncensored-GGUF/resolve/e3b01e9bfacc373148bdb93824496e0c72643250/Qwen-Image-2.1-Turbo-Abliterated-Uncensored-Q8_0.gguf
+      - filename: qwen_image_2.1_vae_bf16.safetensors
+        sha256: bb21f7473051e1ac368515dd3f2e15cd44d7a11748ee8823e1ddca3e4876b7c9
+        uri: https://huggingface.co/Comfy-Org/Qwen-Image-2.1/resolve/df94239739eef7205973a145ffa6f441f7b64e84/vae/qwen_image_2.1_vae_bf16.safetensors
+    overrides:
+      backend: stablediffusion-ggml
+      cfg_scale: 1
+      options:
+        - diffusion_model
+        - llm_path:Qwen-Image-2.1-Turbo-Abliterated-Uncensored-Q8_0.gguf
+        - vae_path:qwen_image_2.1_vae_bf16.safetensors
+        - sampler:euler
+        - custom_sigmas:1.0,0.978453,0.95418,0.926626,0.89508,0.845148,0.704534,0.414568,0.0
+        - offload_params_to_cpu:true
+      parameters:
+        model: Qwen-Image-2.1-Turbo-AD-Q4_K.gguf
+      step: 8
